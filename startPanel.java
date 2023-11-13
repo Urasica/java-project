@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class startPanel extends JPanel {
     public startPanel() {
         setLayout(new BorderLayout());
@@ -54,7 +57,14 @@ public class startPanel extends JPanel {
             textFieldName.setColumns(10);
             add(textFieldName);
             add(new JLabel(" "));
-            add(new JButton("▶start!"));
+            JButton startButton = new JButton("▶start!");
+            startButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
+                }
+            });
+            add(startButton);
         }
     }
 
