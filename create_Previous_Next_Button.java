@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,14 +8,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class create_Previous_Next_Button extends JButton {
+public class create_Previous_Next_Button {
     private CardLayout cardLayout;
     private JPanel addPanel; 
-
-    public create_Previous_Next_Button(CardLayout cardLayout, JPanel addPanel) {
+    private Container c;
+    public create_Previous_Next_Button(CardLayout cardLayout, JPanel addPanel, Container c) {
         this.cardLayout = cardLayout; //기준 카드레이아웃
         this.addPanel = addPanel; //부착할 패널
-
+        this.c = c;
         JButton pre = new JButton("이전");
         JButton next = new JButton("다음");
 
@@ -30,10 +31,10 @@ public class create_Previous_Next_Button extends JButton {
         public void actionPerformed(ActionEvent e) {
             JButton clicked = (JButton)e.getSource();
             if(clicked.getText().equals("이전")) {
-                cardLayout.previous(addPanel);
+                cardLayout.previous(c);
             }
             else if(clicked.getText().equals("다음")) {
-            	cardLayout.next(addPanel);
+            	cardLayout.next(c);
             	
             }
         }
