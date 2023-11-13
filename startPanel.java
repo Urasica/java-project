@@ -5,19 +5,19 @@ public class startPanel extends JPanel {
     public startPanel() {
         setLayout(new BorderLayout());
         JPanel startNorthPanel = new startNorthPanel();
-        startNorthPanel.setBackground(new Color(189, 249, 255));
+        startNorthPanel.setBackground(new Color(218, 227, 244));
         add(startNorthPanel, BorderLayout.NORTH);
         JPanel startCenterPanel = new startCenterPanel();
-        startCenterPanel.setBackground(new Color(189, 249, 255));
+        startCenterPanel.setBackground(new Color(218, 227, 244));
         add(startCenterPanel, BorderLayout.CENTER);
         JPanel startEastPanel = new startEastPanel();
-        startEastPanel.setBackground(new Color(189, 249, 255));
+        startEastPanel.setBackground(new Color(218, 227, 244));
         add(startEastPanel, BorderLayout.EAST);
         JPanel startWestPanel = new startWestPanel();
-        startWestPanel.setBackground(new Color(189, 249, 255));
+        startWestPanel.setBackground(new Color(218, 227, 244));
         add(startWestPanel, BorderLayout.WEST);
         JPanel startSouthPanel = new startSouthPanel();
-        startSouthPanel.setBackground(new Color(189, 249, 255));
+        startSouthPanel.setBackground(new Color(218, 227, 244));
         add(startSouthPanel, BorderLayout.SOUTH);
     }
     static class startNorthPanel extends JPanel { // 시작화면 상단
