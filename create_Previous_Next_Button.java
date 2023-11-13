@@ -34,6 +34,7 @@ public class create_Previous_Next_Button extends JButton {
             }
             else if(clicked.getText().equals("다음")) {
             	cardLayout.next(addPanel);
+            	
             }
         }
     }
