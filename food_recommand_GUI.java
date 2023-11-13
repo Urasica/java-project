@@ -10,13 +10,7 @@ public class food_recommand_GUI extends JFrame {
         CardLayout cardLayout = new CardLayout();
         c.setLayout(cardLayout);
         JPanel start = new startPanel();
-        start.setLayout(new BorderLayout());
-        start.add(new startPanel.startNorthPanel(), BorderLayout.NORTH);
-        start.add(new startPanel.startCenterPanel(), BorderLayout.CENTER);
-        start.add(new startPanel.startEastPanel(), BorderLayout.EAST);
-        start.add(new startPanel.startWestPanel(), BorderLayout.WEST);
-        start.add(new startPanel.startSouthPanel(), BorderLayout.SOUTH);
-        c.setBackground(Color.BLUE);
+
         c.add(start);
 
         setSize(400, 600);
