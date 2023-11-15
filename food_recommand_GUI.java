@@ -13,11 +13,14 @@ public class food_recommand_GUI extends JFrame {
         c.setLayout(cardLayout);
         JPanel start = new startPanel();
         JPanel selectKind = new selectKindPanel();
+        JPanel selectFavorite = new selecFavoritePanel();
 
         c.add(start);
         c.add(selectKind);
+        c.add(selectFavorite);
 
         setSize(400, 600);
+        setLocation(600, 200);
         setVisible(true);
     }
 

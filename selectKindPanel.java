@@ -30,16 +30,16 @@ public class selectKindPanel extends JPanel {
         foodKind[7] = new JButton("디저트");
         kindCenter.add(foodKind[7]);
 
-        for (JButton jButton : foodKind) {
-            jButton.setBackground(Color.lightGray);
-            jButton.addActionListener(new ActionListener() {
+        for (JButton jb : foodKind) {
+            jb.setBackground(Color.lightGray);
+            jb.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(jButton.getBackground() == Color.ORANGE){
-                        jButton.setBackground(Color.lightGray);
+                    if(jb.getBackground() == Color.ORANGE){
+                        jb.setBackground(Color.lightGray);
                     } else {
-                        String kind = jButton.getText();
-                        jButton.setBackground(Color.ORANGE);
+                        String kind = jb.getText();
+                        jb.setBackground(Color.ORANGE);
                     }
                 }
             });
