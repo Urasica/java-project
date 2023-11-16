@@ -17,7 +17,8 @@ public class FoodName {
 													 };
 	
 	private String[] SnackFoodName = new String[] {"로제떡볶이","김밥","순대","떡꼬치","어묵","라면","쫄면","라볶이"};
-
+	
+	
 	
 	private String[] WesternFoodName = new String[]{"토마토파스타","크림파스타","오일파스타","로제파스타","알리오올리오",
 													"뇨끼","샌드위치","칼초네","오믈렛","바베큐폭찹",
@@ -35,7 +36,7 @@ public class FoodName {
 	private String[] dessertFoodName = new String[]{"탕후루","팥빙수","젤라또","수플레팬케이크","에그타르트",
 													"푸딩","까눌레","카스테라","마카롱","요거트",
 													"쿠키","휘낭시에","누룽지","마들렌","스콘"};
-
+	
 
 	
     public void writeToFile(String[] array, String fileName) {
