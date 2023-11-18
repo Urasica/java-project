@@ -19,11 +19,13 @@ public class food_recommand_GUI extends JFrame {
         JPanel start = new startPanel();
         JPanel selectKind = new selectKindPanel();
         JPanel selectFavorite = new selectFavoritePanel();
+        JPanel resultPanel = new resultPanel();
 
         // 생성한 패널들 부착
         c.add(start);
         c.add(selectKind);
         c.add(selectFavorite);
+        c.add(resultPanel);
 
         setSize(400, 600);
         setLocation(600, 200);
