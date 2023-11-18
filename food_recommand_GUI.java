@@ -27,6 +27,7 @@ public class food_recommand_GUI extends JFrame {
         c.add(selectFavorite);
         c.add(resultPanel);
 
+
         setSize(400, 600);
         setLocation(600, 200);
         setVisible(true);
