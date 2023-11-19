@@ -16,7 +16,7 @@ public class selectFavoritePanel extends JPanel{
         favoriteSouth.setBackground(new Color(140, 146, 189));
 
         // 8개의 JButton 생성
-        JButton[] favoriteType = new JButton[8];
+        JButton[] favoriteType = new JButton[10];
         favoriteType[0] = new JButton("매운맛O");
         favoriteCenter.add(favoriteType[0]);
         favoriteType[1] = new JButton("매운맛X");
@@ -33,6 +33,10 @@ public class selectFavoritePanel extends JPanel{
         favoriteCenter.add(favoriteType[6]);
         favoriteType[7] = new JButton("짠맛X");
         favoriteCenter.add(favoriteType[7]);
+        favoriteType[8] = new JButton("감칠맛O");
+        favoriteCenter.add(favoriteType[8]);
+        favoriteType[9] = new JButton("감칠맛X");
+        favoriteCenter.add(favoriteType[9]);
 
         
         for (int i=0; i<favoriteType.length; i++) { // 각 버튼의 색 지정 및 클릭 시 이벤트 추가
@@ -42,6 +46,7 @@ public class selectFavoritePanel extends JPanel{
             jb.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
                     // 홀수번 째(OO맛X) 설정 버튼을 눌르면 앞의  짝수번 째(OO맛O)의 설정 취소하고 현재 설정으로 목록 갱신
                     if (seqence % 2 == 1 && favoriteType[seqence - 1].getBackground() == Color.ORANGE) {
                         favoriteType[seqence].setBackground(Color.ORANGE);
@@ -88,6 +93,7 @@ public class selectFavoritePanel extends JPanel{
         pre.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
                 food_recommand_GUI.cardLayout.previous(food_recommand_GUI.c);
             }
         });
@@ -95,12 +101,15 @@ public class selectFavoritePanel extends JPanel{
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
                 food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
             }
         });
         // 생성한 이전, 다음 버튼과 패널 부착
         favoriteSouth.add(pre);
         favoriteSouth.add(next);
+        favoriteSouthHORIZONTAL.add(new JLabel(" "));
+        favoriteSouthHORIZONTAL.setBackground(new Color(218, 227, 244));
         favoriteSouthHORIZONTAL.add(favoriteSouth, BorderLayout.SOUTH);
         add(favoriteSouthHORIZONTAL, BorderLayout.SOUTH);
 
@@ -117,7 +126,6 @@ public class selectFavoritePanel extends JPanel{
         // 기호 설정 화면 상단에 자리 맞춤용 공백 추가, 색 입히기
         JPanel FavoriteNORTH = new JPanel(new GridLayout(3, 1));
         FavoriteNORTH.setBackground(new Color(218, 227, 244));
-        FavoriteNORTH.add(new JLabel(" "));
         FavoriteNORTH.add(new JLabel(" "));
         add(FavoriteNORTH, BorderLayout.NORTH);
     }
