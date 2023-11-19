@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 // 시작화면을 나타낼 클래스
 public class startPanel extends JPanel {
@@ -47,8 +45,13 @@ public class startPanel extends JPanel {
             add(SettingImage, BorderLayout.EAST);
 
             // 이미지 누르면 설정 화면 나오게
-            //
-            //
+            SettingImage.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                    food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
+                }
+            });
         }
     }
 
@@ -74,6 +77,8 @@ public class startPanel extends JPanel {
             startButton.addActionListener(new ActionListener() { // 시작 버튼 누르면 다음 화면으로 이동
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                    food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                 }
             });

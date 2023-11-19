@@ -27,7 +27,7 @@ public class selectKindPanel extends JPanel {
         kindCenter.add(foodKind[3]);
         foodKind[4] = new JButton("분식");
         kindCenter.add(foodKind[4]);
-        foodKind[5] = new JButton("디저트");
+        foodKind[5] = new JButton("인스턴트");
         kindCenter.add(foodKind[5]);
         foodKind[6] = new JButton("아시안");
         kindCenter.add(foodKind[6]);
@@ -39,6 +39,7 @@ public class selectKindPanel extends JPanel {
             jb.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
                     // 선택 된 것을 취소하는 경우
                     if(jb.getBackground() == Color.ORANGE){
                         jb.setBackground(Color.lightGray);
@@ -75,13 +76,28 @@ public class selectKindPanel extends JPanel {
         pre.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                food_recommand_GUI.cardLayout.previous(food_recommand_GUI.c);
                 food_recommand_GUI.cardLayout.previous(food_recommand_GUI.c);
             }
         });
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                if(foodKind[0].getBackground() == Color.lightGray &&
+                        foodKind[1].getBackground() == Color.lightGray &&
+                        foodKind[2].getBackground() == Color.lightGray &&
+                        foodKind[3].getBackground() == Color.lightGray &&
+                        foodKind[4].getBackground() == Color.lightGray &&
+                        foodKind[5].getBackground() == Color.lightGray &&
+                        foodKind[6].getBackground() == Color.lightGray &&
+                        foodKind[7].getBackground() == Color.ORANGE){
+                    food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
+                    food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
+                }
+                else
+                    food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
             }
         });
         // 생성한 이전, 다음 버튼과 패널 부착
