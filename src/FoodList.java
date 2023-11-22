@@ -12,7 +12,7 @@ public class FoodList extends FoodName {
 	NewFood[] ChineseFood= new NewFood[100];
 	NewFood[] AsianFood= new NewFood[100];
 	NewFood[] dessertFood= new NewFood[100];
-	
+	NewFood[] selectFood = new NewFood[100];
     public FoodList() {
         try {
         	String fileName[] = {"KoreanFood","JapaneseFood",
@@ -119,7 +119,12 @@ public class FoodList extends FoodName {
 	        setKind(this);
 	    }
 	}
-	
+	class ThreadFromJB extends Thread{
+		int count=0;
+		public void run() {
+			selectFood[count]
+		}
+	}
 	
 }
 	
