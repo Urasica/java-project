@@ -42,28 +42,146 @@ public class selectFavoritePanel extends JPanel{
         for (int i=0; i<favoriteType.length; i++) { // 각 버튼의 색 지정 및 클릭 시 이벤트 추가
             JButton jb = favoriteType[i];
             jb.setBackground(Color.lightGray);
-            int seqence = i;
-            jb.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                    // 홀수번 째(OO맛X) 설정 버튼을 눌르면 앞의  짝수번 째(OO맛O)의 설정 취소하고 현재 설정으로 목록 갱신
-                    if (seqence % 2 == 1 && favoriteType[seqence - 1].getBackground() == Color.ORANGE) {
-                        favoriteType[seqence].setBackground(Color.ORANGE);
-                        favoriteType[seqence - 1].setBackground(Color.lightGray);
-                        //
-                        //
-                    }
-                    // 짝수번 째(OO맛O) 설정 버튼을 눌르면 앞의 홀수번 째(OO맛X) 의 설정 취소하고 현재 설정으로 목록 갱신
-                    else if (seqence % 2 == 0 && favoriteType[seqence + 1].getBackground() == Color.ORANGE) {
-                        favoriteType[seqence].setBackground(Color.ORANGE);
-                        favoriteType[seqence + 1].setBackground(Color.lightGray);
-                        //
-                        //
-                    }
-                }
-            });
         }
+        favoriteType[0].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                // 0번 째(매운맛O) 설정 버튼을 눌르면 1번 째(매운맛X)의 설정 취소하고 현재 설정으로 목록 갱신
+                if (favoriteType[1].getBackground() == Color.ORANGE) {
+                    favoriteType[0].setBackground(Color.ORANGE);
+                    favoriteType[1].setBackground(Color.lightGray);
+                    //
+                    //
+                }
+            }
+        });
+
+        favoriteType[1].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                // 1번 째(매운맛X) 설정 버튼을 눌르면 0번 째(매운맛O)의 설정 취소하고 현재 설정으로 목록 갱신
+                if (favoriteType[0].getBackground() == Color.ORANGE) {
+                    favoriteType[1].setBackground(Color.ORANGE);
+                    favoriteType[0].setBackground(Color.lightGray);
+                    //
+                    //
+                }
+            }
+        });
+
+        favoriteType[2].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                // 2번 째(단맛O) 설정 버튼을 눌르면 3번 째(단맛X)의 설정 취소하고 현재 설정으로 목록 갱신
+                if (favoriteType[3].getBackground() == Color.ORANGE) {
+                    favoriteType[2].setBackground(Color.ORANGE);
+                    favoriteType[3].setBackground(Color.lightGray);
+                    //
+                    //
+                }
+            }
+        });
+
+        favoriteType[3].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                // 3번 째(단맛X) 설정 버튼을 눌르면 2번 째(단맛O)의 설정 취소하고 현재 설정으로 목록 갱신
+                if (favoriteType[2].getBackground() == Color.ORANGE) {
+                    favoriteType[3].setBackground(Color.ORANGE);
+                    favoriteType[2].setBackground(Color.lightGray);
+                    //
+                    //
+                }
+            }
+        });
+
+        favoriteType[4].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                // 4번 째(느끼한맛O) 설정 버튼을 눌르면 5번 째(느끼한맛X)의 설정 취소하고 현재 설정으로 목록 갱신
+                if (favoriteType[5].getBackground() == Color.ORANGE) {
+                    favoriteType[4].setBackground(Color.ORANGE);
+                    favoriteType[5].setBackground(Color.lightGray);
+                    //
+                    //
+                }
+            }
+        });
+
+        favoriteType[5].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                // 5번 째(느끼한맛X) 설정 버튼을 눌르면 4번 째(느끼한맛O)의 설정 취소하고 현재 설정으로 목록 갱신
+                if (favoriteType[4].getBackground() == Color.ORANGE) {
+                    favoriteType[5].setBackground(Color.ORANGE);
+                    favoriteType[4].setBackground(Color.lightGray);
+                    //
+                    //
+                }
+            }
+        });
+
+        favoriteType[6].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                // 6번 째(짠맛O) 설정 버튼을 눌르면 7번 째(짠맛X)의 설정 취소하고 현재 설정으로 목록 갱신
+                if (favoriteType[7].getBackground() == Color.ORANGE) {
+                    favoriteType[6].setBackground(Color.ORANGE);
+                    favoriteType[7].setBackground(Color.lightGray);
+                    //
+                    //
+                }
+            }
+        });
+
+        favoriteType[7].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                // 7번 째(짠맛X) 설정 버튼을 눌르면 6번 째(짠맛O)의 설정 취소하고 현재 설정으로 목록 갱신
+                if (favoriteType[6].getBackground() == Color.ORANGE) {
+                    favoriteType[7].setBackground(Color.ORANGE);
+                    favoriteType[6].setBackground(Color.lightGray);
+                    //
+                    //
+                }
+            }
+        });
+
+        favoriteType[8].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                // 8번 째(감칠맛O) 설정 버튼을 눌르면 9번 째(감칠맛X)의 설정 취소하고 현재 설정으로 목록 갱신
+                if (favoriteType[9].getBackground() == Color.ORANGE) {
+                    favoriteType[8].setBackground(Color.ORANGE);
+                    favoriteType[9].setBackground(Color.lightGray);
+                    //
+                    //
+                }
+            }
+        });
+
+        favoriteType[9].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                // 9번 째(감칠맛X) 설정 버튼을 눌르면 8번 째(감칠맛O)의 설정 취소하고 현재 설정으로 목록 갱신
+                if (favoriteType[8].getBackground() == Color.ORANGE) {
+                    favoriteType[9].setBackground(Color.ORANGE);
+                    favoriteType[8].setBackground(Color.lightGray);
+                    //
+                    //
+                }
+            }
+        });
 
         // 기본 설정을 모두 X로 설정 해두기
         for (int i=0; i<favoriteType.length; i++) {
