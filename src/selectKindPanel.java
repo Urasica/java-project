@@ -72,15 +72,12 @@ public class selectKindPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                if(FoodList.selectedFood.get(0)!=null) {//이전 버튼 눌렀을시 selectedFood에 값이 있을 경우 값 초기화
-                	FoodList.selectedFood.clear();
-                }
                 food_recommand_GUI.cardLayout.previous(food_recommand_GUI.c);
                 food_recommand_GUI.cardLayout.previous(food_recommand_GUI.c);
             }
         });
         next.addActionListener(new ActionListener() {
-            @Override
+            @Override	
             public void actionPerformed(ActionEvent e) {
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
                 if(foodKind[0].getBackground() == Color.lightGray && //디저트일 경우
@@ -94,6 +91,7 @@ public class selectKindPanel extends JPanel {
                 	 for(int i=0;i<food.dessertFood.length;i++) {
                 		FoodList.selectedFood.add(food.dessertFood[i]);
                 	 }
+                	 System.out.println(FoodList.selectedFood);
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                 }

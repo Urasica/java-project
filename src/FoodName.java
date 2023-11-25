@@ -89,7 +89,7 @@ public class FoodName {
         }
     }
 
-    public void FoodNameFile(){
+    public void FoodNameFile(){ //음식이름을 txt파일에 넣기
         FoodName foodName = new FoodName();
 
         foodName.writeToFile(foodName.KoreanFoodName, "KoreanFood.txt");

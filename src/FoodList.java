@@ -1,4 +1,4 @@
-import java.awt.Color;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class FoodList extends FoodName {
 	
     public FoodList() { //텍스트 파일로 전부 만들기
         try {
-        	FoodNameFile();
+        	FoodNameFile(); // 음식 이름을 파일에 넣기
         	String fileName[] = {"KoreanFood","JapaneseFood",
         						 "SnackFood","WesternFood",
         						 "ChineseFood","AsianFood",
@@ -28,23 +28,24 @@ public class FoodList extends FoodName {
             	String[] foodNames = readFoodNamesFromFile(filePath);
             	int index=0;
             	 for(int k=0;foodNames[k]!=null;k++) { // foodNames의 각 요소들을 객체 배열에 저장
+            		 
                      NewFood foodItem = new NewFood(foodNames[k]);
                      
-                     if		(i==0) KoreanFood[index] = foodItem;
+                     if		(i==0) KoreanFood[index++] = foodItem;
                     
-                     else if(i==1) JapaneseFood[index] = foodItem;
+                     else if(i==1) JapaneseFood[index++] = foodItem;
                      
-                     else if(i==2) SnackFood[index] = foodItem;
+                     else if(i==2) SnackFood[index++] = foodItem;
                      
-                     else if(i==3) WesternFood[index] = foodItem;
+                     else if(i==3) WesternFood[index++] = foodItem;
                      
-                     else if(i==4) ChineseFood[index] = foodItem;
+                     else if(i==4) ChineseFood[index++] = foodItem;
                      
-                     else if(i==5) AsianFood[index] = foodItem;
+                     else if(i==5) AsianFood[index++] = foodItem;
                      
-                     else if(i==6) dessertFood[index] = foodItem;  
+                     else if(i==6) dessertFood[index++] = foodItem;  
 
-                     else if(i==7) fastFood[index] = foodItem;  
+                     else if(i==7) fastFood[index++] = foodItem;  
                  	}
             	 
             	 }
@@ -88,7 +89,7 @@ public class FoodList extends FoodName {
 	        String line;
 	        while ((line = reader.readLine()) != null) {
 	            // 각 줄에서 매치되는 부분을 찾아내어 리스트에 추가
-	            if (food.name==line) {
+	            if (food.name.equals(line)) {
 	                return true;
 	            }
 	        }
@@ -124,6 +125,25 @@ public class FoodList extends FoodName {
 	        this.name = name;
 	        setFavorite(this);
 	    }
+		
+		public String GetName() {
+			return this.name;
+		}
+		public boolean GetSweet() {
+			return this.sweet;
+		}
+		public boolean GetSpicy() {
+			return this.spicy;
+		}
+		public boolean Getoily() {
+			return this.oily;
+		}
+		public boolean GetSalty() {
+			return this.salty;
+		}
+		public boolean GetBeTasty() {
+			return this.beTasty;
+		}
 	}
 	
 	 

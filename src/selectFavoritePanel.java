@@ -92,8 +92,9 @@ public class selectFavoritePanel extends JPanel{
         // 이전, 다음 버튼에 클릭 시 이동하도록 이벤트 추가
         pre.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {//이전 버튼 눌렀을시 selectedFood 초기화
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                FoodList.selectedFood.clear();
                 food_recommand_GUI.cardLayout.previous(food_recommand_GUI.c);
             }
         });
