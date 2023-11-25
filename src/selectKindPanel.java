@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 public class selectKindPanel extends JPanel {
     selectKindPanel() {
         setLayout(new BorderLayout());
+        FoodList food = new FoodList();
         
         // selectKindPanel 패널 중앙에 배치할 패널 생성
         JPanel kindCenter = new JPanel(new GridLayout(5, 2, 20, 20));
@@ -27,13 +28,13 @@ public class selectKindPanel extends JPanel {
         kindCenter.add(foodKind[3]);
         foodKind[4] = new JButton("분식");
         kindCenter.add(foodKind[4]);
-        foodKind[5] = new JButton("인스턴트");
+        foodKind[5] = new JButton("패스트푸드");
         kindCenter.add(foodKind[5]);
         foodKind[6] = new JButton("아시안");
         kindCenter.add(foodKind[6]);
         foodKind[7] = new JButton("디저트");
         kindCenter.add(foodKind[7]);
-
+        
         for (JButton jb : foodKind) {  // 각 버튼의 색 지정 및 클릭 시 이벤트 추가
             jb.setBackground(Color.lightGray);
             jb.addActionListener(new ActionListener() {
@@ -43,17 +44,11 @@ public class selectKindPanel extends JPanel {
                     // 선택 된 것을 취소하는 경우
                     if(jb.getBackground() == Color.ORANGE){
                         jb.setBackground(Color.lightGray);
-                        // 추가한 리스트를 취소하는 기능
-                        //
-                        //
-                    }
+                       }
                     // 선택하지 않은 것을 선택하는 경우
                     else {
-                        String kind = jb.getText();
                         jb.setBackground(Color.ORANGE);
-                        // 선택한 음식 종류의 리스트를 추가하는 기능
-                        //
-                        //
+                       
                     }
                 }
             });
@@ -77,6 +72,9 @@ public class selectKindPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                if(FoodList.selectedFood.get(0)!=null) {//이전 버튼 눌렀을시 selectedFood에 값이 있을 경우 값 초기화
+                	FoodList.selectedFood.clear();
+                }
                 food_recommand_GUI.cardLayout.previous(food_recommand_GUI.c);
                 food_recommand_GUI.cardLayout.previous(food_recommand_GUI.c);
             }
@@ -93,11 +91,65 @@ public class selectKindPanel extends JPanel {
                         foodKind[5].getBackground() == Color.lightGray &&
                         foodKind[6].getBackground() == Color.lightGray &&
                         foodKind[7].getBackground() == Color.ORANGE){
+                	 for(int i=0;i<food.dessertFood.length;i++) {
+                		FoodList.selectedFood.add(food.dessertFood[i]);
+                	 }
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                 }
-                else
+                else {
+                	String[] selectedKind=new String[10];
+                	int index=0;
+                	for(int i=0; i<foodKind.length;i++) { //배경색이 orange인 button의 text를 확인 후 List에 저장
+                		if(foodKind[i].getBackground() ==Color.ORANGE) {
+                			selectedKind[index]=foodKind[i].getText();
+                			index++;
+                		}
+                	}
+                	for(int k=0;k<selectedKind.length;k++) { //selectedFood List에 삽입
+                		if(selectedKind[k]=="한식") {
+                			for(int j=0;j<food.KoreanFood.length;j++) {
+                				FoodList.selectedFood.add(food.KoreanFood[j]);
+                			}
+                		}
+                		else if(selectedKind[k]=="일식") {
+                			for(int j=0;j<food.JapaneseFood.length;j++) {
+                				FoodList.selectedFood.add(food.JapaneseFood[j]);
+                			}
+                		}
+                		else if(selectedKind[k]=="중식") {
+                			for(int j=0;j<food.ChineseFood.length;j++) {
+                				FoodList.selectedFood.add(food.ChineseFood[j]);
+                			}
+                		}
+                		else if(selectedKind[k]=="양식") {
+                			for(int j=0;j<food.WesternFood.length;j++) {
+                				FoodList.selectedFood.add(food.WesternFood[j]);
+                			}
+                		}
+                		else if(selectedKind[k]=="분식") {
+                			for(int j=0;j<food.SnackFood.length;j++) {
+                				FoodList.selectedFood.add(food.SnackFood[j]);
+                			}
+                		}
+                		else if(selectedKind[k]=="패스트푸드") {
+                			for(int j=0;j<food.fastFood.length;j++) {
+                				FoodList.selectedFood.add(food.fastFood[j]);
+                			}
+                		}
+                		else if(selectedKind[k]=="아시안") {
+                			for(int j=0;j<food.AsianFood.length;j++) {
+                				FoodList.selectedFood.add(food.AsianFood[j]);
+                			}
+                		}
+                		else if(selectedKind[k]=="디저트") {
+                			for(int j=0;j<food.dessertFood.length;j++) {
+                				FoodList.selectedFood.add(food.dessertFood[j]);
+                			}
+                		}
+                	}
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
+                }
             }
         });
         // 생성한 이전, 다음 버튼과 패널 부착
@@ -111,11 +163,13 @@ public class selectKindPanel extends JPanel {
         kindEAST.add(new JLabel("            "));
         kindEAST.setBackground(new Color(218, 227, 244));
         add(kindEAST, BorderLayout.EAST);
+        
         // 음식 설정 화면 서쪽에 자리 맞춤용 공백 추가, 색 입히기
         JPanel kindWEST = new JPanel();
         kindWEST.add(new JLabel("            "));
         kindWEST.setBackground(new Color(218, 227, 244));
         add(kindWEST, BorderLayout.WEST);
+        
         // 음식 설정 화면 상단에 자리 맞춤용 공백 추가, 색 입히기
         JPanel kindNORTH = new JPanel(new GridLayout(3, 1));
         kindNORTH.setBackground(new Color(218, 227, 244));

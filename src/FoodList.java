@@ -1,8 +1,8 @@
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import javax.swing.*;
-import java.awt.*;
+import java.util.ArrayList;
 
 public class FoodList extends FoodName {
 	NewFood[] KoreanFood= new NewFood[100];
@@ -12,13 +12,16 @@ public class FoodList extends FoodName {
 	NewFood[] ChineseFood= new NewFood[100];
 	NewFood[] AsianFood= new NewFood[100];
 	NewFood[] dessertFood= new NewFood[100];
-	NewFood[] selectFood = new NewFood[100];
-    public FoodList() {
+	NewFood[] fastFood= new NewFood[100];
+	static ArrayList<FoodList.NewFood> selectedFood = new ArrayList<NewFood>();
+	
+    public FoodList() { //텍스트 파일로 전부 만들기
         try {
+        	FoodNameFile();
         	String fileName[] = {"KoreanFood","JapaneseFood",
         						 "SnackFood","WesternFood",
         						 "ChineseFood","AsianFood",
-        						 "dessertFood"}; 
+        						 "dessertFood","fastFood"}; 
         
             for(int i=0;i<fileName.length;i++) { //파일경로 불러오기 및 파일에서 음식 이름 불러오기
             	String filePath = "./FoodNameFile/"+fileName[i]+".txt";
@@ -39,7 +42,9 @@ public class FoodList extends FoodName {
                      
                      else if(i==5) AsianFood[index] = foodItem;
                      
-                     else if(i==6) dessertFood[index] = foodItem;    
+                     else if(i==6) dessertFood[index] = foodItem;  
+
+                     else if(i==7) fastFood[index] = foodItem;  
                  	}
             	 
             	 }
@@ -67,8 +72,9 @@ public class FoodList extends FoodName {
         return foodNames;
     }
     
+    
 	
-	class NewFood extends FoodName{
+	 class NewFood extends FoodName{
 	    private String name;
 	    private boolean sweet;
 	    private boolean spicy;
@@ -77,12 +83,12 @@ public class FoodList extends FoodName {
 	    private boolean beTasty;
 	    
 	    //파일에서 목록을 읽어 boolean 형식으로 리턴하는 함수
-	    public boolean setKindFromFile(String filePath, NewFood food)throws IOException{
+	    public boolean setFavoriteFromFile(String filePath, NewFood food)throws IOException{
 	    	BufferedReader reader = new BufferedReader(new FileReader(filePath));
 	        String line;
 	        while ((line = reader.readLine()) != null) {
 	            // 각 줄에서 매치되는 부분을 찾아내어 리스트에 추가
-	            if (food.name.equals(line)) {
+	            if (food.name==line) {
 	                return true;
 	            }
 	        }
@@ -91,13 +97,13 @@ public class FoodList extends FoodName {
 	        return false;
 	    }
 	    
-	    private NewFood setKind(NewFood food) throws IOException {
+	    private NewFood setFavorite(NewFood food) throws IOException {
 	    	String fileName[] = {"./FoodNameFile/sweetFood.txt","./FoodNameFile/spicyFood.txt",
 					 "./FoodNameFile/oilyFood.txt","./FoodNameFile/saltyFood.txt","./FoodNameFile/beTastyFood.txt"
 					 }; 
 	    	
 	    	for(int i=0;i<fileName.length;i++) {
-	    		boolean check= setKindFromFile(fileName[i],food);
+	    		boolean check= setFavoriteFromFile(fileName[i],food);
 	    		
 	    			if(check==true&&i==0) food.sweet = true;  //sweet음식에 해당 음식이 있을 경우 return true
 	    			
@@ -114,19 +120,15 @@ public class FoodList extends FoodName {
 	    }
 	    
 	
-		public NewFood(String name) throws IOException { //매개 변수를 받는 생성자
+		public NewFood(String name) throws IOException { //매개 변수를 받는 생성자 NewFood 객체 생성
 	        this.name = name;
-	        setKind(this);
+	        setFavorite(this);
 	    }
 	}
-	class ThreadFromJB extends Thread{
-		int count=0;
-		public void run() {
-			selectFood[count]
-		}
-	}
 	
+	 
 }
-	
+
+
 
 
