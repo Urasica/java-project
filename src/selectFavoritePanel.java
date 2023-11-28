@@ -1,7 +1,16 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 // 음식의 기호를 선택하는 화면을 나타낸 클래스
 public class selectFavoritePanel extends JPanel{
@@ -51,8 +60,8 @@ public class selectFavoritePanel extends JPanel{
                     if (seqence % 2 == 1 && favoriteType[seqence - 1].getBackground() == Color.ORANGE) {
                         favoriteType[seqence].setBackground(Color.ORANGE);
                         favoriteType[seqence - 1].setBackground(Color.lightGray);
-                        //
-                        //
+                        
+                        
                     }
                     // 짝수번 째(OO맛O) 설정 버튼을 눌르면 앞의 홀수번 째(OO맛X) 의 설정 취소하고 현재 설정으로 목록 갱신
                     else if (seqence % 2 == 0 && favoriteType[seqence + 1].getBackground() == Color.ORANGE) {
@@ -103,7 +112,129 @@ public class selectFavoritePanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                String[] selectedFavorite=new String[5];
+            	int index=0;
+            	for(int i=0; i<favoriteType.length;i++) { //배경색이 orange인 button의 text를 확인 후 List에 저장
+            		if(favoriteType[i].getBackground() ==Color.ORANGE) {
+            			selectedFavorite[index]=favoriteType[i].getText();
+            			index++;
+            		}
+            	}
+            	//아래부터는 버튼의 이벤트 구현
+            	for(int k=0; k<selectedFavorite.length;k++) {
+            		
+            		if(selectedFavorite[k].equals("매운맛O")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				
+            				if(element.GetSpicy()==false) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("매운맛X")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetSpicy()==true) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("단맛O")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetSweet()==false) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("단맛X")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetSweet()==true) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("느끼한맛O")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.Getoily()==false) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("느끼한맛X")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.Getoily()==true) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("짠맛O")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetSalty()==false) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("짠맛X")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetSalty()==true) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("감칠맛O")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetBeTasty()==false) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("감칠맛X")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetBeTasty()==true) {
+            					iterator.remove();
+            				}
+            			}
+            		}
+            	}
+            	for(FoodList.NewFood a: FoodList.selectedFood) {
+            		System.out.println(a.GetName());
+            		System.out.println(a.GetName()+"'s GetSpicy "+a.GetSpicy());
+            		System.out.println(a.GetName()+"'s Getoily "+a.Getoily());
+            		System.out.println(a.GetName()+"'s GetSalty "+a.GetSalty());
+            		System.out.println(a.GetName()+"'s GetSweet "+a.GetSweet());
+            		System.out.println(a.GetName()+"'s GetBeTasty "+a.GetBeTasty());
+            	}
                 food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
+                
+            	
             }
         });
         // 생성한 이전, 다음 버튼과 패널 부착

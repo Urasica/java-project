@@ -5,14 +5,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FoodList extends FoodName {
-	NewFood[] KoreanFood= new NewFood[100];
-	NewFood[] JapaneseFood= new NewFood[100];
-	NewFood[] SnackFood= new NewFood[100];
-	NewFood[] WesternFood= new NewFood[100];
-	NewFood[] ChineseFood= new NewFood[100];
-	NewFood[] AsianFood= new NewFood[100];
-	NewFood[] dessertFood= new NewFood[100];
-	NewFood[] fastFood= new NewFood[100];
+	static NewFood[] KoreanFood= new NewFood[100];
+	static NewFood[] JapaneseFood= new NewFood[100];
+	static NewFood[] SnackFood= new NewFood[100];
+	static NewFood[] WesternFood= new NewFood[100];
+	static NewFood[] ChineseFood= new NewFood[100];
+	static NewFood[] AsianFood= new NewFood[100];
+	static NewFood[] dessertFood= new NewFood[100];
+	static NewFood[] fastFood= new NewFood[100];
 	static ArrayList<FoodList.NewFood> selectedFood = new ArrayList<NewFood>();
 	
     public FoodList() { //텍스트 파일로 전부 만들기

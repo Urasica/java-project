@@ -88,10 +88,9 @@ public class selectKindPanel extends JPanel {
                         foodKind[5].getBackground() == Color.lightGray &&
                         foodKind[6].getBackground() == Color.lightGray &&
                         foodKind[7].getBackground() == Color.ORANGE){
-                	 for(int i=0;i<food.dessertFood.length;i++) {
-                		FoodList.selectedFood.add(food.dessertFood[i]);
+                	 for(int i=0;i<FoodList.dessertFood.length;i++) {
+                		FoodList.selectedFood.add(FoodList.dessertFood[i]);
                 	 }
-                	 System.out.println(FoodList.selectedFood);
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                 }
@@ -106,46 +105,47 @@ public class selectKindPanel extends JPanel {
                 	}
                 	for(int k=0;k<selectedKind.length;k++) { //selectedFood List에 삽입
                 		if(selectedKind[k]=="한식") {
-                			for(int j=0;j<food.KoreanFood.length;j++) {
-                				FoodList.selectedFood.add(food.KoreanFood[j]);
+                			for(int j=0;FoodList.KoreanFood[j]!=null;j++) {
+                				FoodList.selectedFood.add(FoodList.KoreanFood[j]);
                 			}
                 		}
                 		else if(selectedKind[k]=="일식") {
-                			for(int j=0;j<food.JapaneseFood.length;j++) {
-                				FoodList.selectedFood.add(food.JapaneseFood[j]);
+                			for(int j=0;FoodList.JapaneseFood[j]!=null;j++) {
+                				FoodList.selectedFood.add(FoodList.JapaneseFood[j]);
                 			}
                 		}
                 		else if(selectedKind[k]=="중식") {
-                			for(int j=0;j<food.ChineseFood.length;j++) {
-                				FoodList.selectedFood.add(food.ChineseFood[j]);
+                			for(int j=0;FoodList.ChineseFood[j]!=null;j++) {
+                				FoodList.selectedFood.add(FoodList.ChineseFood[j]);
                 			}
                 		}
                 		else if(selectedKind[k]=="양식") {
-                			for(int j=0;j<food.WesternFood.length;j++) {
-                				FoodList.selectedFood.add(food.WesternFood[j]);
+                			for(int j=0;FoodList.WesternFood[j]!=null;j++) {
+                				FoodList.selectedFood.add(FoodList.WesternFood[j]);
                 			}
                 		}
                 		else if(selectedKind[k]=="분식") {
-                			for(int j=0;j<food.SnackFood.length;j++) {
-                				FoodList.selectedFood.add(food.SnackFood[j]);
+                			for(int j=0;FoodList.SnackFood[j]!=null;j++) {
+                				FoodList.selectedFood.add(FoodList.SnackFood[j]);
                 			}
                 		}
                 		else if(selectedKind[k]=="패스트푸드") {
-                			for(int j=0;j<food.fastFood.length;j++) {
-                				FoodList.selectedFood.add(food.fastFood[j]);
+                			for(int j=0;FoodList.fastFood[j]!=null;j++) {
+                				FoodList.selectedFood.add(FoodList.fastFood[j]);
                 			}
                 		}
                 		else if(selectedKind[k]=="아시안") {
-                			for(int j=0;j<food.AsianFood.length;j++) {
-                				FoodList.selectedFood.add(food.AsianFood[j]);
+                			for(int j=0;FoodList.AsianFood[j]!=null;j++) {
+                				FoodList.selectedFood.add(FoodList.AsianFood[j]);
                 			}
                 		}
                 		else if(selectedKind[k]=="디저트") {
-                			for(int j=0;j<food.dessertFood.length;j++) {
-                				FoodList.selectedFood.add(food.dessertFood[j]);
+                			for(int j=0;FoodList.dessertFood[j]!=null;j++) {
+                				FoodList.selectedFood.add(FoodList.dessertFood[j]);
                 			}
                 		}
                 	}
+                	
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                 }
             }
