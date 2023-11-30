@@ -4,11 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class resultPanel extends JPanel {
+    static JLabel titleLabel;
     resultPanel() {
         setLayout(null);
         setBackground(new Color(218, 227, 244));
 
-        JLabel titleLabel = new JLabel("오늘의 추천 메뉴는...");
+        titleLabel = new JLabel("오늘의 추천 메뉴는...");
         titleLabel.setBounds(145, 20, 300, 30);
         add(titleLabel);
 
