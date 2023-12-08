@@ -1,10 +1,21 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 // 음식의 기호를 선택하는 화면을 나타낸 클래스
 public class selectFavoritePanel extends JPanel{
+	static FoodList.NewFood randomFood;
+	static JPanel result;
     selectFavoritePanel() {
         setLayout(new BorderLayout());
 
@@ -42,146 +53,28 @@ public class selectFavoritePanel extends JPanel{
         for (int i=0; i<favoriteType.length; i++) { // 각 버튼의 색 지정 및 클릭 시 이벤트 추가
             JButton jb = favoriteType[i];
             jb.setBackground(Color.lightGray);
+            int seqence = i;
+            jb.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                    // 홀수번 째(OO맛X) 설정 버튼을 눌르면 앞의  짝수번 째(OO맛O)의 설정 취소하고 현재 설정으로 목록 갱신
+                    if (seqence % 2 == 1 && favoriteType[seqence - 1].getBackground() == Color.ORANGE) {
+                        favoriteType[seqence].setBackground(Color.ORANGE);
+                        favoriteType[seqence - 1].setBackground(Color.lightGray);
+                        
+                        
+                    }
+                    // 짝수번 째(OO맛O) 설정 버튼을 눌르면 앞의 홀수번 째(OO맛X) 의 설정 취소하고 현재 설정으로 목록 갱신
+                    else if (seqence % 2 == 0 && favoriteType[seqence + 1].getBackground() == Color.ORANGE) {
+                        favoriteType[seqence].setBackground(Color.ORANGE);
+                        favoriteType[seqence + 1].setBackground(Color.lightGray);
+                        //
+                        //
+                    }
+                }
+            });
         }
-        favoriteType[0].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                // 0번 째(매운맛O) 설정 버튼을 눌르면 1번 째(매운맛X)의 설정 취소하고 현재 설정으로 목록 갱신
-                if (favoriteType[1].getBackground() == Color.ORANGE) {
-                    favoriteType[0].setBackground(Color.ORANGE);
-                    favoriteType[1].setBackground(Color.lightGray);
-                    //
-                    //
-                }
-            }
-        });
-
-        favoriteType[1].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                // 1번 째(매운맛X) 설정 버튼을 눌르면 0번 째(매운맛O)의 설정 취소하고 현재 설정으로 목록 갱신
-                if (favoriteType[0].getBackground() == Color.ORANGE) {
-                    favoriteType[1].setBackground(Color.ORANGE);
-                    favoriteType[0].setBackground(Color.lightGray);
-                    //
-                    //
-                }
-            }
-        });
-
-        favoriteType[2].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                // 2번 째(단맛O) 설정 버튼을 눌르면 3번 째(단맛X)의 설정 취소하고 현재 설정으로 목록 갱신
-                if (favoriteType[3].getBackground() == Color.ORANGE) {
-                    favoriteType[2].setBackground(Color.ORANGE);
-                    favoriteType[3].setBackground(Color.lightGray);
-                    //
-                    //
-                }
-            }
-        });
-
-        favoriteType[3].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                // 3번 째(단맛X) 설정 버튼을 눌르면 2번 째(단맛O)의 설정 취소하고 현재 설정으로 목록 갱신
-                if (favoriteType[2].getBackground() == Color.ORANGE) {
-                    favoriteType[3].setBackground(Color.ORANGE);
-                    favoriteType[2].setBackground(Color.lightGray);
-                    //
-                    //
-                }
-            }
-        });
-
-        favoriteType[4].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                // 4번 째(느끼한맛O) 설정 버튼을 눌르면 5번 째(느끼한맛X)의 설정 취소하고 현재 설정으로 목록 갱신
-                if (favoriteType[5].getBackground() == Color.ORANGE) {
-                    favoriteType[4].setBackground(Color.ORANGE);
-                    favoriteType[5].setBackground(Color.lightGray);
-                    //
-                    //
-                }
-            }
-        });
-
-        favoriteType[5].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                // 5번 째(느끼한맛X) 설정 버튼을 눌르면 4번 째(느끼한맛O)의 설정 취소하고 현재 설정으로 목록 갱신
-                if (favoriteType[4].getBackground() == Color.ORANGE) {
-                    favoriteType[5].setBackground(Color.ORANGE);
-                    favoriteType[4].setBackground(Color.lightGray);
-                    //
-                    //
-                }
-            }
-        });
-
-        favoriteType[6].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                // 6번 째(짠맛O) 설정 버튼을 눌르면 7번 째(짠맛X)의 설정 취소하고 현재 설정으로 목록 갱신
-                if (favoriteType[7].getBackground() == Color.ORANGE) {
-                    favoriteType[6].setBackground(Color.ORANGE);
-                    favoriteType[7].setBackground(Color.lightGray);
-                    //
-                    //
-                }
-            }
-        });
-
-        favoriteType[7].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                // 7번 째(짠맛X) 설정 버튼을 눌르면 6번 째(짠맛O)의 설정 취소하고 현재 설정으로 목록 갱신
-                if (favoriteType[6].getBackground() == Color.ORANGE) {
-                    favoriteType[7].setBackground(Color.ORANGE);
-                    favoriteType[6].setBackground(Color.lightGray);
-                    //
-                    //
-                }
-            }
-        });
-
-        favoriteType[8].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                // 8번 째(감칠맛O) 설정 버튼을 눌르면 9번 째(감칠맛X)의 설정 취소하고 현재 설정으로 목록 갱신
-                if (favoriteType[9].getBackground() == Color.ORANGE) {
-                    favoriteType[8].setBackground(Color.ORANGE);
-                    favoriteType[9].setBackground(Color.lightGray);
-                    //
-                    //
-                }
-            }
-        });
-
-        favoriteType[9].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                // 9번 째(감칠맛X) 설정 버튼을 눌르면 8번 째(감칠맛O)의 설정 취소하고 현재 설정으로 목록 갱신
-                if (favoriteType[8].getBackground() == Color.ORANGE) {
-                    favoriteType[9].setBackground(Color.ORANGE);
-                    favoriteType[8].setBackground(Color.lightGray);
-                    //
-                    //
-                }
-            }
-        });
 
         // 기본 설정을 모두 X로 설정 해두기
         for (int i=0; i<favoriteType.length; i++) {
@@ -210,8 +103,9 @@ public class selectFavoritePanel extends JPanel{
         // 이전, 다음 버튼에 클릭 시 이동하도록 이벤트 추가
         pre.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {//이전 버튼 눌렀을시 selectedFood 초기화
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                FoodList.selectedFood.clear();
                 food_recommand_GUI.cardLayout.previous(food_recommand_GUI.c);
             }
         });
@@ -220,6 +114,127 @@ public class selectFavoritePanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                String[] selectedFavorite=new String[5];
+            	int index=0;
+            	for(int i=0; i<favoriteType.length;i++) { //배경색이 orange인 button의 text를 확인 후 List에 저장
+            		if(favoriteType[i].getBackground() ==Color.ORANGE) {
+            			selectedFavorite[index]=favoriteType[i].getText();
+            			index++;
+            		}
+            	}
+            	//아래부터는 버튼의 이벤트 구현
+            	for(int k=0; k<selectedFavorite.length;k++) {
+            		
+            		if(selectedFavorite[k].equals("매운맛O")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				
+            				if(element.GetSpicy()==false) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("매운맛X")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetSpicy()==true) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("단맛O")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetSweet()==false) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("단맛X")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetSweet()==true) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("느끼한맛O")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.Getoily()==false) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("느끼한맛X")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.Getoily()==true) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("짠맛O")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetSalty()==false) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("짠맛X")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetSalty()==true) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("감칠맛O")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetBeTasty()==false) {
+            					
+            					iterator.remove();
+            				}
+            			}
+            		}
+            		if(selectedFavorite[k].equals("감칠맛X")){
+            			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+            			while(iterator.hasNext()) {
+            				FoodList.NewFood element = iterator.next();
+            				if(element.GetBeTasty()==true) {
+            					iterator.remove();
+            				}
+            			}
+            		}
+            	}
+            	for(FoodList.NewFood a: FoodList.selectedFood) {
+            		System.out.println(a.GetName());
+            	}
+				randomFood = FoodList.getRandomFood();
+				if (result != null) {
+					food_recommand_GUI.c.remove(selectFavoritePanel.result);
+				}
+				result = new resultPanel();
+				food_recommand_GUI.c.add(result);
                 food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
             }
         });
