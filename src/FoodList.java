@@ -57,6 +57,15 @@ public class FoodList extends FoodName {
         }
     }
 
+	public static NewFood getRandomFood() {
+		if (!selectedFood.isEmpty()) {
+			int randomIndex = (int) (Math.random() * selectedFood.size());
+			return selectedFood.get(randomIndex);
+		} else {
+			return null;
+		}
+	}
+
     // 파일에서 음식 이름을 읽어오는 메서드
     private String[] readFoodNamesFromFile(String filePath) throws IOException {
         String[] foodNames= new String[100];
@@ -72,9 +81,9 @@ public class FoodList extends FoodName {
         reader.close();
         return foodNames;
     }
-    
-    
-	
+
+
+
 	 class NewFood extends FoodName{
 	    private String name;
 	    private boolean sweet;
@@ -82,7 +91,7 @@ public class FoodList extends FoodName {
 	    private boolean oily;
 	    private boolean salty;
 	    private boolean beTasty;
-	    
+
 	    //파일에서 목록을 읽어 boolean 형식으로 리턴하는 함수
 	    public boolean setFavoriteFromFile(String filePath, NewFood food)throws IOException{
 	    	BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -94,38 +103,38 @@ public class FoodList extends FoodName {
 	            }
 	        }
 	        reader.close();
-	        
+
 	        return false;
 	    }
-	    
+
 	    private NewFood setFavorite(NewFood food) throws IOException {
 	    	String fileName[] = {"./FoodNameFile/sweetFood.txt","./FoodNameFile/spicyFood.txt",
 					 "./FoodNameFile/oilyFood.txt","./FoodNameFile/saltyFood.txt","./FoodNameFile/beTastyFood.txt"
-					 }; 
-	    	
+					 };
+
 	    	for(int i=0;i<fileName.length;i++) {
 	    		boolean check= setFavoriteFromFile(fileName[i],food);
-	    		
+
 	    			if(check==true&&i==0) food.sweet = true;  //sweet음식에 해당 음식이 있을 경우 return true
-	    			
+
 	    			else if(check==true&&i==1) food.spicy= true;  //spicy음식에 해당 음식이 있을 경우 return true
-	 
+
 	    			else if(check==true&&i==2) food.oily = true;  //oily음식에 해당 음식이 있을 경우 return true
-	    				 
+
 	    			else if(check==true&&i==3)food.salty = true;   //salty음식에 해당 음식이 있을 경우 return true
-	    				
+
 	    			else if(check==true&&i==4) food.beTasty = true;  //beTasty음식에 해당 음식이 있을 경우 return true
-	    				
+
 	    	}
 	    	return food;
 	    }
-	    
-	
+
+
 		public NewFood(String name) throws IOException { //매개 변수를 받는 생성자 NewFood 객체 생성
 	        this.name = name;
 	        setFavorite(this);
 	    }
-		
+
 		public String GetName() {
 			return this.name;
 		}
@@ -145,10 +154,4 @@ public class FoodList extends FoodName {
 			return this.beTasty;
 		}
 	}
-	
-	 
 }
-
-
-
-

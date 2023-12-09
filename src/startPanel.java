@@ -4,6 +4,9 @@ import java.awt.event.*;
 
 // 시작화면을 나타낼 클래스
 public class startPanel extends JPanel {
+    static JTextField textFieldName;
+    static JLabel labelName;
+
     public startPanel() {
         setLayout(new BorderLayout()); // BorderLayout으로 설정
         // startPanel의 상단 패널 생성, 색 설정 및 부착
@@ -65,13 +68,20 @@ public class startPanel extends JPanel {
             add(title);
             add(new JLabel("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
             add(new JLabel(" "));
-            JTextField textFieldName = new JPlaceholderTextField("닉네임을 입력하세요");
+            textFieldName = new JPlaceholderTextField("닉네임을 입력하세요");
             textFieldName.setColumns(10);
             // JTextField에 텍스트 입력하여 엔터 누르면 유저명 입력 및 파일 입출력
-            //
-            //
+            textFieldName.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    handleEnterPressed();
+                }
+            });
 
             add(textFieldName);
+            labelName = new JLabel();
+            labelName.setVisible(false);
+            add(labelName);
             add(new JLabel(" "));
             JButton startButton = new JButton("▶start!");
             startButton.addActionListener(new ActionListener() { // 시작 버튼 누르면 다음 화면으로 이동
@@ -83,6 +93,26 @@ public class startPanel extends JPanel {
                 }
             });
             add(startButton);
+        }
+
+        private void handleEnterPressed() {
+            if (textFieldName != null) {
+                String nickname = textFieldName.getText().trim();
+                if (!nickname.isEmpty()) {
+                    labelName.setText("\"" + nickname + "\"님 환영합니다!");
+                    labelName.setFont(new Font("San-Serif", Font.BOLD, 18));
+                    labelName.setHorizontalAlignment(SwingConstants.CENTER);
+                    labelName.setOpaque(true);
+                    labelName.setBackground(new Color(255,237,114));
+                    labelName.setVisible(true);
+                    // textFieldName 대신 labelName으로 교체
+                    remove(textFieldName);
+                    // resultPanel의 JLabel에 닉네임 출력
+                    resultPanel.titleLabel.setText(nickname + "님의 추천메뉴는...");
+                    revalidate();
+                    repaint();
+                }
+            }
         }
     }
 

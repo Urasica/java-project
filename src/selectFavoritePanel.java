@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 
 // 음식의 기호를 선택하는 화면을 나타낸 클래스
 public class selectFavoritePanel extends JPanel{
+	static FoodList.NewFood randomFood;
+	static JPanel result;
     selectFavoritePanel() {
         setLayout(new BorderLayout());
 
@@ -226,15 +228,14 @@ public class selectFavoritePanel extends JPanel{
             	}
             	for(FoodList.NewFood a: FoodList.selectedFood) {
             		System.out.println(a.GetName());
-            		System.out.println(a.GetName()+"'s GetSpicy "+a.GetSpicy());
-            		System.out.println(a.GetName()+"'s Getoily "+a.Getoily());
-            		System.out.println(a.GetName()+"'s GetSalty "+a.GetSalty());
-            		System.out.println(a.GetName()+"'s GetSweet "+a.GetSweet());
-            		System.out.println(a.GetName()+"'s GetBeTasty "+a.GetBeTasty());
             	}
+				randomFood = FoodList.getRandomFood();
+				if (result != null) {
+					food_recommand_GUI.c.remove(selectFavoritePanel.result);
+				}
+				result = new resultPanel();
+				food_recommand_GUI.c.add(result);
                 food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
-                
-            	
             }
         });
         // 생성한 이전, 다음 버튼과 패널 부착

@@ -21,8 +21,8 @@ public class settingPanel extends JPanel {
         add(sound);
 
         JLabel exit = new JLabel("x");
-        exit.setSize(50, 50);
-        exit.setLocation(350, 0);
+        exit.setSize(40, 40);
+        exit.setLocation(360, 0);
         exit.setFont(new Font("Serif", Font.BOLD, 40));
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
