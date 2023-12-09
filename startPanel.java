@@ -107,8 +107,6 @@ public class startPanel extends JPanel {
                     labelName.setVisible(true);
                     // textFieldName 대신 labelName으로 교체
                     remove(textFieldName);
-                    // resultPanel의 JLabel에 닉네임 출력
-                    resultPanel.titleLabel.setText(nickname + "님의 추천메뉴는...");
                     revalidate();
                     repaint();
                 }
