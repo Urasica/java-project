@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JButton;
@@ -111,7 +112,7 @@ public class selectFavoritePanel extends JPanel{
         });
 
         next.addActionListener(new ActionListener() {
-            @Override
+			@Override
             public void actionPerformed(ActionEvent e) {
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
                 String[] selectedFavorite=new String[5];
@@ -131,7 +132,6 @@ public class selectFavoritePanel extends JPanel{
             				FoodList.NewFood element = iterator.next();
             				
             				if(element.GetSpicy()==false) {
-            					
             					iterator.remove();
             				}
             			}

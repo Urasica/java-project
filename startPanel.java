@@ -30,6 +30,7 @@ public class startPanel extends JPanel {
         startSouthPanel.setBackground(new Color(218, 227, 244));
         add(startSouthPanel, BorderLayout.SOUTH);
     }
+
     static class startNorthPanel extends JPanel { // startPanel의 상단 패널
         startNorthPanel() {
             setLayout(new BorderLayout());
@@ -60,7 +61,7 @@ public class startPanel extends JPanel {
 
     static class startCenterPanel extends JPanel { // startPanel의 중앙 패널
         startCenterPanel() {
-            setLayout(new GridLayout(8,1));
+            setLayout(new GridLayout(10, 1));
             add(new JLabel(" "));
             JLabel title = new JLabel("음식메뉴추천");
             title.setFont(new Font("굴림", Font.BOLD, 40));
@@ -83,16 +84,38 @@ public class startPanel extends JPanel {
             labelName.setVisible(false);
             add(labelName);
             add(new JLabel(" "));
-            JButton startButton = new JButton("▶start!");
-            startButton.addActionListener(new ActionListener() { // 시작 버튼 누르면 다음 화면으로 이동
+            JLabel startButton = new JLabel("▶ start! ◀");
+            startButton.setFont(new Font("굴림", Font.BOLD, 25));
+            startButton.setHorizontalAlignment(SwingConstants.CENTER);
+            startButton.addMouseListener(new MouseAdapter() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                public void mouseClicked(MouseEvent e) {
                     clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                 }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    // Play a sound when the mouse enters
+                    clickSound.playSound("MenuSoundEffect.wav", food_recommand_GUI.volume);
+
+                    // Increase the size by 5 pixels
+                    Font originalFont = startButton.getFont();
+                    Font newFont = new Font(originalFont.getName(), originalFont.getStyle(), originalFont.getSize() + 5);
+                    startButton.setFont(newFont);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    // Restore the original size when the mouse exits
+                    Font originalFont = startButton.getFont();
+                    Font newFont = new Font(originalFont.getName(), originalFont.getStyle(), originalFont.getSize() - 5);
+                    startButton.setFont(newFont);
+                }
             });
             add(startButton);
+            add(new JLabel(" "));
         }
 
         private void handleEnterPressed() {
@@ -103,7 +126,7 @@ public class startPanel extends JPanel {
                     labelName.setFont(new Font("San-Serif", Font.BOLD, 18));
                     labelName.setHorizontalAlignment(SwingConstants.CENTER);
                     labelName.setOpaque(true);
-                    labelName.setBackground(new Color(255,237,114));
+                    labelName.setBackground(new Color(255, 237, 114));
                     labelName.setVisible(true);
                     // textFieldName 대신 labelName으로 교체
                     remove(textFieldName);
@@ -130,12 +153,18 @@ public class startPanel extends JPanel {
 
     static class startSouthPanel extends JPanel { // startPanel의 하단 패널
         startSouthPanel() {
-            // 자리 맞춤용 공백
-            setLayout(new GridLayout(10, 1));
-            for(int i=0; i<10; i++){
-                add(new JLabel(" "));
-            }
+            setLayout(new FlowLayout());
+            // "룰렛" 버튼 추가
+            JButton rouletteButton = new JButton("룰렛");
+            // 룰렛 버튼을 누르면 룰렛 화면이 나오도록 설정
+            rouletteButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Roulette verticalRoulette = new Roulette();
+                    verticalRoulette.setVisible(true);
+                }
+            });
+            add(rouletteButton);
         }
     }
-
 }
