@@ -32,7 +32,7 @@ public class food_recommand_GUI extends JFrame {
 
 
         setSize(400, 600);
-        setLocation(600, 200);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
