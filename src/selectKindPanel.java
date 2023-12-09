@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 // 음식의 종류를 선택하는 화면을 나타낸 클래스
 public class selectKindPanel extends JPanel {
@@ -77,7 +79,8 @@ public class selectKindPanel extends JPanel {
             }
         });
         next.addActionListener(new ActionListener() {
-            @Override	
+            @SuppressWarnings("unchecked")
+			@Override	
             public void actionPerformed(ActionEvent e) {
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
                 if(foodKind[0].getBackground() == Color.lightGray && //디저트일 경우
@@ -145,7 +148,9 @@ public class selectKindPanel extends JPanel {
                 			}
                 		}
                 	}
-                	
+                	//selectedFood를 받는 copiedList
+    		        resultPanel.copiedList = (ArrayList<FoodList.NewFood>) FoodList.selectedFood.clone();
+    		  
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                 }
             }

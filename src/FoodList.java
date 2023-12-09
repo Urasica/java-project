@@ -85,12 +85,12 @@ public class FoodList extends FoodName {
 
 
 	 class NewFood extends FoodName{
-	    private String name;
-	    private boolean sweet;
-	    private boolean spicy;
-	    private boolean oily;
-	    private boolean salty;
-	    private boolean beTasty;
+	    private String name ="";
+	    private boolean sweet = false;
+	    private boolean spicy = false;
+	    private boolean oily = false;
+	    private boolean salty = false;
+	    private boolean beTasty = false;
 
 	    //파일에서 목록을 읽어 boolean 형식으로 리턴하는 함수
 	    public boolean setFavoriteFromFile(String filePath, NewFood food)throws IOException{
@@ -133,7 +133,7 @@ public class FoodList extends FoodName {
 		public NewFood(String name) throws IOException { //매개 변수를 받는 생성자 NewFood 객체 생성
 	        this.name = name;
 	        setFavorite(this);
-	    }
+	    }	
 
 		public String GetName() {
 			return this.name;
