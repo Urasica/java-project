@@ -32,6 +32,9 @@ public class resultPanel extends JPanel {
         }
 
         titleLabel = new JLabel("오늘의 추천 메뉴는...");
+
+        revalidate();
+        repaint();
         titleLabel.setBounds(145, 20, 300, 30);
         add(titleLabel);
 
@@ -98,6 +101,4 @@ public class resultPanel extends JPanel {
         add(more);
 
 
-        
-	}
-}
+}}

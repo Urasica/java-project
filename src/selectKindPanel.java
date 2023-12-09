@@ -94,6 +94,12 @@ public class selectKindPanel extends JPanel {
                 	 for(int i=0;i<FoodList.dessertFood.length;i++) {
                 		FoodList.selectedFood.add(FoodList.dessertFood[i]);
                 	 }
+                    selectFavoritePanel.randomFood = FoodList.getRandomFood();
+                    if (selectFavoritePanel.result != null) {
+                        food_recommand_GUI.c.remove(selectFavoritePanel.result);
+                    }
+                    selectFavoritePanel.result = new resultPanel();
+                    food_recommand_GUI.c.add(selectFavoritePanel.result);
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                 }

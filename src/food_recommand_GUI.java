@@ -23,16 +23,16 @@ public class food_recommand_GUI extends JFrame {
         JPanel setting = new settingPanel();
         JPanel selectKind = new selectKindPanel();
         JPanel selectFavorite = new selectFavoritePanel();
-        backgroundMusic.playSound("backgroundmusic.wav",volume); //배경음악 삽입
+
         // 생성한 패널들 부착
         c.add(start);
         c.add(setting);
         c.add(selectKind);
         c.add(selectFavorite);
-
+        backgroundMusic.playSound("backgroundmusic.wav",volume); //배경음악 삽입
 
         setSize(400, 600);
-        setLocation(600, 200);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
