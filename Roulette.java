@@ -12,29 +12,30 @@ public class Roulette extends JFrame {
     private int currentIndex = 0;
 
     public Roulette() {
-        setTitle("Vertical Roulette");
+        setTitle("결제 정하기 룰렛");
         setSize(400, 300);
 
-        label = new JLabel("No options available");
+        label = new JLabel("참여할 사람의 이름을 적어주세요");
         label.setFont(new Font("굴림", Font.BOLD, 20));
         label.setHorizontalAlignment(JLabel.CENTER);
         add(label, BorderLayout.CENTER);
 
-        JButton startButton = new JButton("Start");
+        JButton startButton = new JButton("시작");
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 숫자 입력 다이얼로그 표시
-                String input = JOptionPane.showInputDialog("Enter the number of options:");
+                String input = JOptionPane.showInputDialog("사람의 수를 입력하고 엔터를 누르세요");
                 try {
                     int numberOfOptions = Integer.parseInt(input);
 
                     // 문자열 입력 다이얼로그 표시
                     options = new ArrayList<>();
                     for (int i = 0; i < numberOfOptions; i++) {
-                        String option = JOptionPane.showInputDialog("Enter option " + (i + 1) + ":");
+                        String option = JOptionPane.showInputDialog((i + 1) + "번 쨰 인원의 이름" + ":");
                         options.add(option);
                     }
+                    options.add("더치페이");
 
                     // 룰렛 초기화
                     currentIndex = 0;
@@ -43,12 +44,12 @@ public class Roulette extends JFrame {
                     // 타이머 시작
                     timer.start();
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
+                    JOptionPane.showMessageDialog(null, "잘못된 입력입니다. 숫자를 입력하세요");
                 }
             }
         });
 
-        JButton stopButton = new JButton("Stop");
+        JButton stopButton = new JButton("정지");
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,7 +79,7 @@ public class Roulette extends JFrame {
         if (options != null && options.size() > 0) {
             label.setText(options.get(currentIndex));
         } else {
-            label.setText("No options available");
+            label.setText("참여할 사람의 이름을 적어주세요");
         }
 
         // 레이블 위치 조정 (위에서 아래로 이동)
