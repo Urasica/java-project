@@ -93,7 +93,7 @@ public class resultPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
                 JFrame newFrame = new JFrame("결과와 비슷한 메뉴들");
-                newFrame.setSize(300, 200);
+                newFrame.setSize(500, 400);
                 newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
                 JLabel foodImage = new JLabel();
