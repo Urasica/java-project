@@ -16,7 +16,17 @@ public class resultPanel extends JPanel {
             selectFavoritePanel.randomFood = FoodList.selectedFood.get(0);
         }
 
-        titleLabel = new JLabel("오늘의 추천 메뉴는...");
+        if (startPanel.labelName.getText().isEmpty()) {
+            String nickname = startPanel.textFieldName.getText().trim();
+            if (!nickname.isEmpty()) {
+                // resultPanel의 JLabel에 닉네임 출력
+                resultPanel.titleLabel.setText(nickname + "님의 추천메뉴는...");
+                revalidate();
+                repaint();
+            }
+        } else {
+            titleLabel = new JLabel("오늘의 추천 메뉴는...");
+        }
         titleLabel.setBounds(145, 20, 300, 30);
         add(titleLabel);
 
