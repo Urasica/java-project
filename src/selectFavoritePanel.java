@@ -128,106 +128,128 @@ public class selectFavoritePanel extends JPanel{
             		
             		if(selectedFavorite[k].equals("매운맛O")){
             			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
-            			while(iterator.hasNext()) {
+            			while(!FoodList.selectedFood.isEmpty() && iterator.hasNext()) {
             				FoodList.NewFood element = iterator.next();
-            				
-            				if(element.GetSpicy()==false) {
-            					iterator.remove();
-            				}
+            				if(element!=null) {
+	            				if(element.GetSpicy()==false) {
+	            					iterator.remove();
+	            				}
+	            			}
             			}
             		}
             		if(selectedFavorite[k].equals("매운맛X")){
             			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
-            			while(iterator.hasNext()) {
+            			while(!FoodList.selectedFood.isEmpty() && iterator.hasNext()) {
             				FoodList.NewFood element = iterator.next();
-            				if(element.GetSpicy()==true) {
-            					
-            					iterator.remove();
+           
+            				if(element!=null) {
+	            				if(element.GetSpicy()==true) {
+	            					
+	            					iterator.remove();
+	            				}
             				}
             			}
             		}
             		if(selectedFavorite[k].equals("단맛O")){
             			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
-            			while(iterator.hasNext()) {
+            			while(!FoodList.selectedFood.isEmpty() && iterator.hasNext()) {
             				FoodList.NewFood element = iterator.next();
-            				if(element.GetSweet()==false) {
-            					
-            					iterator.remove();
+            				if(element!=null) {
+	            				if(element.GetSweet()==false) {
+	            					
+	            					iterator.remove();
+	            				}
             				}
             			}
             		}
             		if(selectedFavorite[k].equals("단맛X")){
             			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
-            			while(iterator.hasNext()) {
+            			while(!FoodList.selectedFood.isEmpty() && iterator.hasNext()) {
             				FoodList.NewFood element = iterator.next();
-            				if(element.GetSweet()==true) {
-            					
-            					iterator.remove();
+            				if(element!=null) {
+	            				if(element.GetSweet()==true) {
+	            					
+	            					iterator.remove();
+	            				}
             				}
             			}
             		}
             		if(selectedFavorite[k].equals("느끼한맛O")){
             			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
-            			while(iterator.hasNext()) {
+            			while(!FoodList.selectedFood.isEmpty() && iterator.hasNext()) {
             				FoodList.NewFood element = iterator.next();
-            				if(element.Getoily()==false) {
-            					
-            					iterator.remove();
+            				if(element!=null) {
+	            				if(element.Getoily()==false) {
+	            					
+	            					iterator.remove();
+	            				}
             				}
             			}
             		}
             		if(selectedFavorite[k].equals("느끼한맛X")){
             			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
-            			while(iterator.hasNext()) {
+            			while(!FoodList.selectedFood.isEmpty() && iterator.hasNext()) {
             				FoodList.NewFood element = iterator.next();
-            				if(element.Getoily()==true) {
-            					
-            					iterator.remove();
+            				if(element!=null) {
+	            				if(element.Getoily()==true) {
+	            					
+	            					iterator.remove();
+	            				}	
             				}
             			}
             		}
             		if(selectedFavorite[k].equals("짠맛O")){
             			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
-            			while(iterator.hasNext()) {
+            			while(!FoodList.selectedFood.isEmpty() && iterator.hasNext()) {
             				FoodList.NewFood element = iterator.next();
-            				if(element.GetSalty()==false) {
-            					
-            					iterator.remove();
+            				if(element!=null) {
+	            				if(element.GetSalty()==false) {
+	            					
+	            					iterator.remove();
+	            				}
             				}
             			}
             		}
             		if(selectedFavorite[k].equals("짠맛X")){
             			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
-            			while(iterator.hasNext()) {
+            			while(!FoodList.selectedFood.isEmpty() && iterator.hasNext()) {
             				FoodList.NewFood element = iterator.next();
-            				if(element.GetSalty()==true) {
-            					
-            					iterator.remove();
+            				if(element!=null) {
+	            				if(element.GetSalty()==true) {
+	            					
+	            					iterator.remove();
+	            				}
             				}
             			}
             		}
             		if(selectedFavorite[k].equals("감칠맛O")){
             			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
-            			while(iterator.hasNext()) {
+            			while(!FoodList.selectedFood.isEmpty() && iterator.hasNext()) {
             				FoodList.NewFood element = iterator.next();
-            				if(element.GetBeTasty()==false) {
-            					
-            					iterator.remove();
+            				if(element!=null) {
+	            				if(element.GetBeTasty()==false) {
+	            					
+	            					iterator.remove();
+	            				}
             				}
             			}
             		}
             		if(selectedFavorite[k].equals("감칠맛X")){
             			Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
-            			while(iterator.hasNext()) {
+            			while(!FoodList.selectedFood.isEmpty() && iterator.hasNext()) {
             				FoodList.NewFood element = iterator.next();
-            				if(element.GetBeTasty()==true) {
-            					iterator.remove();
+            				if(element!=null) {
+	            				if(element.GetBeTasty()==true) {
+	            					iterator.remove();
+	            				}
             				}
             			}
             		}
             	}
             	for(FoodList.NewFood a: FoodList.selectedFood) {
-            		System.out.println(a.GetName());
+            		if(a!=null) {
+            			System.out.println(a.GetName());
+            		}
             	}
 				randomFood = FoodList.getRandomFood();
 				if (result != null) {

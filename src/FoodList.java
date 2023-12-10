@@ -85,7 +85,7 @@ public class FoodList extends FoodName {
 
 
 	 class NewFood extends FoodName{
-	    private String name ="";
+	    private String name ="비어있음";
 	    private boolean sweet = false;
 	    private boolean spicy = false;
 	    private boolean oily = false;

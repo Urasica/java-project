@@ -87,7 +87,8 @@ public class resultPanel extends JPanel {
                 
             }
         });
-        add(pre);
+        if(selectKindPanel.foodKind[7].getBackground()==Color.lightGray)//디저트가 선택됐을 경우 삽입금지
+        	add(pre);
 
         JButton more = new JButton("더보기");
         more.setBounds(210, 330, 120, 30);

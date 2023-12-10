@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 // 음식의 종류를 선택하는 화면을 나타낸 클래스
 public class selectKindPanel extends JPanel {
+	static JButton[] foodKind = new JButton[8];
     selectKindPanel() {
         setLayout(new BorderLayout());
         FoodList food = new FoodList();
@@ -19,7 +20,7 @@ public class selectKindPanel extends JPanel {
         kindSouth.setBackground(new Color(140, 146, 189));
 
         // 8개의 JButton 생성
-        JButton[] foodKind = new JButton[8];
+        
         foodKind[0] = new JButton("한식");
         kindCenter.add(foodKind[0]);
         foodKind[1] = new JButton("중식");
@@ -49,7 +50,17 @@ public class selectKindPanel extends JPanel {
                        }
                     // 선택하지 않은 것을 선택하는 경우
                     else {
-                        jb.setBackground(Color.ORANGE);
+                    	if(jb.getText().equals("디저트")) { //디저트 선택시 다른 메뉴들 선택 해제
+                    		for(int i=0;i<7;i++) {
+                    			foodKind[i].setBackground(Color.lightGray);
+                    		}
+                    	}
+                        if(foodKind[7].getBackground()==Color.ORANGE) { //디저트가 선택되어 있을시
+                        	jb.setBackground(Color.lightGray);
+                        }
+                        else {
+                        	jb.setBackground(Color.ORANGE);
+                        }
                        
                     }
                 }
@@ -103,7 +114,7 @@ public class selectKindPanel extends JPanel {
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                     food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
                 }
-                else {
+                else {//디저트가 아닐 경우
                 	String[] selectedKind=new String[10];
                 	int index=0;
                 	for(int i=0; i<foodKind.length;i++) { //배경색이 orange인 button의 text를 확인 후 List에 저장

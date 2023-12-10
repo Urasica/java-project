@@ -9,7 +9,7 @@ public class FoodName {
 	private String[] KoreanFoodName = new String[]{"양념갈비","찜닭","김치찌개","닭갈비","삼겹살",
 												   "돼지국밥","비빔밥","고등어조림","제육볶음","육개장",
 												   "칼국수","생선구이","돼지불고기","물냉면","비빔냉면",
-												   "갈비탕", "비어있음"};
+												   "갈비탕"};
 	
 	private String[] JapaneseFoodName = new String[]{"덴푸라","돈카츠","야키토리","규동","모츠나베",
 													"오니기리","오코노미야키","야키니쿠","부타동","텐동",

@@ -9,9 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 public class moreFrame extends JFrame {
+    private Timer timer;
+    private Iterator<FoodList.NewFood> iterator; // iterator 변수 추가
 
-	public moreFrame() {
-		JFrame newFrame = new JFrame("결과와 비슷한 메뉴들");
+    public moreFrame() {
+        JFrame newFrame = new JFrame("결과와 비슷한 메뉴들");
         newFrame.setSize(500, 400);
         newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -23,33 +25,51 @@ public class moreFrame extends JFrame {
         foodName.setBounds(175, 270, 300, 30);
         newFrame.add(foodName);
 
-        int delay = 1000; //milliseconds
-        Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
+        JLabel errMessage = new JLabel();
+        errMessage.setBounds(0, 0, 100, 100);
+        newFrame.add(errMessage);
+        
+        int delay = 1000; // milliseconds
+        iterator = FoodList.selectedFood.iterator(); // iterator 초기화
         ActionListener taskPerformer = new ActionListener() {
-            
             public void actionPerformed(ActionEvent evt) {
-                
-            	Iterator<FoodList.NewFood> iter = iterator;
-            
-                if (iter.hasNext()) {
-                    FoodList.NewFood food = iter.next(); // get the next food
-                    ImageIcon foodImageSrc = new ImageIcon("image/" + food.GetName() + ".jpg");
-                    Image image = foodImageSrc.getImage();
-                    Image scaledImage = image.getScaledInstance(250, 200, Image.SCALE_SMOOTH);
-                    ImageIcon scaledSettingIconIcon = new ImageIcon(scaledImage);
-                    foodImage.setIcon(scaledSettingIconIcon);
-
-                    foodName.setText(food.GetName());
-                    newFrame.validate(); // to refresh the frame
-                    newFrame.repaint();
+                if (FoodList.selectedFood.isEmpty()) { //목록이 비어있을 경우
+                    System.out.println("목록이 비어있습니다");
+                    errMessage.setText("목록이 비어있습니다");
+                    return;
                 }
                 else {
-                    iter = FoodList.selectedFood.iterator(); // reset the iterator
+                    if(iterator.hasNext()) {
+	                    FoodList.NewFood food = iterator.next(); // get the next food
+	                    if (food == null) {
+	                    	iterator = FoodList.selectedFood.iterator();
+	                        return;
+	                    }
+	                    ImageIcon foodImageSrc = new ImageIcon("image/" + food.GetName() + ".jpg");
+	                    Image image = foodImageSrc.getImage();
+	                    Image scaledImage = image.getScaledInstance(250, 200, Image.SCALE_SMOOTH);
+	                    ImageIcon scaledSettingIconIcon = new ImageIcon(scaledImage);
+	                    foodImage.setIcon(scaledSettingIconIcon);
+	
+	                    foodName.setText(food.GetName());
+	                    newFrame.validate(); // to refresh the frame
+	                    newFrame.repaint();
+                    }
+                    else {
+                    	iterator = FoodList.selectedFood.iterator();
+                    }
                 }
             }
         };
-        Timer timer = new Timer(delay, taskPerformer);
-        timer.start(); // 타이머 시작
+        timer = new Timer(delay, taskPerformer);
+        timer.start();
+        newFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            	iterator = FoodList.selectedFood.iterator();
+            	timer.stop();
+            }
+        });
         newFrame.setVisible(true);
     }
 }
