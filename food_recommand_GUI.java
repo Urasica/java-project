@@ -29,7 +29,7 @@ public class food_recommand_GUI extends JFrame {
         c.add(setting);
         c.add(selectKind);
         c.add(selectFavorite);
-
+        backgroundMusic.playSound("backgroundmusic.wav",volume); //배경음악 삽입
 
         setSize(400, 600);
         setLocationRelativeTo(null);

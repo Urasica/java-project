@@ -1,5 +1,4 @@
-import java.awt.Color;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,23 +22,21 @@ public class resultPanel extends JPanel {
 	resultPanel() {
         setLayout(null);
         setBackground(new Color(218, 227, 244));
-        
+        clickSound.playSound("Fanfare.wav", 0.05);
         
         selectFavoritePanel.randomFood = FoodList.getRandomFood();
         if (selectFavoritePanel.randomFood == null) {
             FoodList.selectedFood.add(FoodList.KoreanFood[17]);
             selectFavoritePanel.randomFood = FoodList.selectedFood.get(0);
         }
-
-        titleLabel = new JLabel("오늘의 추천 메뉴는...");
-
-        revalidate();
-        repaint();
-        titleLabel.setBounds(145, 20, 300, 30);
-        add(titleLabel);
-
-        // Check if selectFavoritePanel.randomFood is not null before accessing its properties
+        
         if (selectFavoritePanel.randomFood != null) {
+            titleLabel = new JLabel("오늘의 추천 메뉴는...");
+            titleLabel.setFont(new Font("나눔고딕", Font.BOLD, 15));
+            revalidate();
+            repaint();
+            titleLabel.setBounds(145, 20, 300, 30);
+            add(titleLabel);
             ImageIcon foodImageSrc = new ImageIcon("image/" + selectFavoritePanel.randomFood.GetName() + ".jpg");
             Image image = foodImageSrc.getImage();
             Image scaledImage = image.getScaledInstance(250, 200, Image.SCALE_SMOOTH);
@@ -50,11 +47,18 @@ public class resultPanel extends JPanel {
 
             JLabel foodName = new JLabel(selectFavoritePanel.randomFood.GetName());
             foodName.setBounds(175, 270, 300, 30);
+            foodName.setFont(new Font("맑은 고딕", Font.BOLD, 20));
             add(foodName);
         } else {
-            // Handle the case when randomFood is null (e.g., display an error message)
-            JLabel errorMessage = new JLabel("Error: No random food available.");
-            errorMessage.setBounds(75, 60, 300, 30);
+            ImageIcon foodImageSrc = new ImageIcon("image/비어있음.jpg");
+            Image image = foodImageSrc.getImage();
+            Image scaledImage = image.getScaledInstance(250, 200, Image.SCALE_SMOOTH);
+            ImageIcon scaledSettingIconIcon = new ImageIcon(scaledImage);
+            JLabel foodImage = new JLabel(scaledSettingIconIcon);
+            foodImage.setBounds(75, 60, 250, 200);
+            add(foodImage);
+            JLabel errorMessage = new JLabel("해당 되는 음식이 리스트에 없어요...");
+            errorMessage.setBounds(115, 270, 300, 30);
             add(errorMessage);
         }
 
@@ -69,6 +73,7 @@ public class resultPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                FoodList.selectedFood.clear();
                 food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
             }
         });
@@ -87,7 +92,8 @@ public class resultPanel extends JPanel {
                 
             }
         });
-        add(pre);
+        if(selectKindPanel.foodKind[7].getBackground()==Color.lightGray)//디저트가 선택됐을 경우 삽입금지
+        	add(pre);
 
         JButton more = new JButton("더보기");
         more.setBounds(210, 330, 120, 30);
@@ -95,47 +101,7 @@ public class resultPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
-                JFrame newFrame = new JFrame("결과와 비슷한 메뉴들");
-                newFrame.setSize(500, 400);
-                newFrame.setLocationRelativeTo(null);
-                newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-                JLabel foodImage = new JLabel();
-                foodImage.setBounds(75, 60, 250, 200);
-                newFrame.add(foodImage);
-
-                JLabel foodName = new JLabel();
-                foodName.setBounds(175, 270, 300, 30);
-                newFrame.add(foodName);
-
-                int delay = 1000; //milliseconds
-                Iterator<FoodList.NewFood> iterator = FoodList.selectedFood.iterator();
-                ActionListener taskPerformer = new ActionListener() {
-                    
-                    public void actionPerformed(ActionEvent evt) {
-                        
-                    	Iterator<FoodList.NewFood> iter = iterator;
-                    
-                        if (iter.hasNext()) {
-                            FoodList.NewFood food = iter.next(); // get the next food
-                            ImageIcon foodImageSrc = new ImageIcon("image/" + food.GetName() + ".jpg");
-                            Image image = foodImageSrc.getImage();
-                            Image scaledImage = image.getScaledInstance(250, 200, Image.SCALE_SMOOTH);
-                            ImageIcon scaledSettingIconIcon = new ImageIcon(scaledImage);
-                            foodImage.setIcon(scaledSettingIconIcon);
-
-                            foodName.setText(food.GetName());
-                            newFrame.validate(); // to refresh the frame
-                            newFrame.repaint();
-                        }
-                        else {
-                            iter = FoodList.selectedFood.iterator(); // reset the iterator
-                        }
-                    }
-                };
-                Timer timer = new Timer(delay, taskPerformer);
-                timer.start(); // 타이머 시작
-                newFrame.setVisible(true);
+                moreFrame mf = new moreFrame();
             }
         });
         add(more);

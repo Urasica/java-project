@@ -64,7 +64,7 @@ public class startPanel extends JPanel {
             setLayout(new GridLayout(10, 1));
             add(new JLabel(" "));
             JLabel title = new JLabel("음식메뉴추천");
-            title.setFont(new Font("굴림", Font.BOLD, 40));
+            title.setFont(new Font("나눔고딕", Font.BOLD, 40));
             title.setHorizontalAlignment(SwingConstants.CENTER);
             add(title);
             add(new JLabel("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"));
