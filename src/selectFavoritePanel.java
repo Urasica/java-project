@@ -204,7 +204,7 @@ public class selectFavoritePanel extends JPanel{
             				FoodList.NewFood element = iterator.next();
             				if(element!=null) {
 	            				if(element.GetSalty()==false) {
-	            					
+	       
 	            					iterator.remove();
 	            				}
             				}

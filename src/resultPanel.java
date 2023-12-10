@@ -69,6 +69,7 @@ public class resultPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clickSound.playSound("ButtonSoundEffect.wav", food_recommand_GUI.volume);
+                FoodList.selectedFood.clear();
                 food_recommand_GUI.cardLayout.next(food_recommand_GUI.c);
             }
         });
